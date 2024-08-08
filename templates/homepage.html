@@ -3,16 +3,23 @@
 {% block content %}
 <div class="content">
   <table>
+
     <tr>
       <th>Задача</th>
       <th>Добвлено</th>
       <th>Действия</th>
     </tr>
-    <tr>
-      <td>Покормить кота</td>
-      <td>18:22</td>
-      <td>изменить\удалить</td>
-    </tr>
+
+    {% for task in tasks %}
+      <tr>
+        <td>{{ task.text }}</td>
+        <td>{{ task.date_created.date() }}</td>
+        <td>
+          <a href="/update/{{ task.id }}">Изменить</a>
+          <a href="/delete/{{ task.id }}">Удалить</a>
+        </td>
+      </tr>
+    {% endfor %}
   </table>
 
   <form action="/" method="POST">
